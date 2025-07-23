@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚀 Maham's Speedy Birthday Countdown 🌠</title>
+  <title>🚀 Maham's Orbiting Birthday Countdown 🌠</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Dancing+Script:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Dancing+Script:wght@700&family=Montserrat:wght@300;700&display=swap');
     
     :root {
       --neon-pink: #ff2a6d;
       --neon-blue: #05d9e8;
       --neon-purple: #d300c5;
       --neon-yellow: #f9f002;
-      --scroll-speed: 30s; /* Increased speed (originally 60s) */
+      --neon-green: #00ff9d;
+      --scroll-speed: 25s;
+      --particle-count: 150;
+      --orbit-radius: clamp(150px, 40vw, 300px);
+      --orbit-speed: 40s;
     }
     
     body {
@@ -24,6 +28,7 @@
       overflow-x: hidden;
       height: 100vh;
       perspective: 1000px;
+      overflow: hidden;
     }
     
     .galaxy-container {
@@ -39,7 +44,7 @@
       height: 300vh;
       animation: cosmicFloat var(--scroll-speed) linear infinite;
       transform-style: preserve-3d;
-      will-change: transform; /* Improves animation performance */
+      will-change: transform;
     }
     
     @keyframes cosmicFloat {
@@ -72,7 +77,7 @@
         rgba(5, 217, 232, 0.1) 30%,
         rgba(11, 4, 23, 0) 70%
       );
-      animation-duration: 80s; /* Faster nebula movement */
+      animation-duration: 80s;
     }
     
     .nebula-layer:nth-child(2) {
@@ -82,7 +87,7 @@
         rgba(249, 240, 2, 0.1) 30%,
         rgba(11, 4, 23, 0) 70%
       );
-      animation-duration: 120s; /* Faster nebula movement */
+      animation-duration: 120s;
       animation-direction: reverse;
     }
     
@@ -94,20 +99,38 @@
     
     .birthday-title {
       font-size: clamp(2.5rem, 8vw, 5rem);
-      background: linear-gradient(90deg, var(--neon-pink), var(--neon-yellow), var(--neon-purple));
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-yellow), var(--neon-purple), var(--neon-green));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       text-shadow: 0 0 20px rgba(255,255,255,0.5);
       margin-bottom: 1rem;
-      animation: pulse 1.5s infinite alternate; /* Faster pulse */
+      animation: pulse 1.5s infinite alternate, rainbow 8s linear infinite;
+      letter-spacing: 2px;
+      position: relative;
+    }
+    
+    .birthday-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+      border-radius: 50%;
+      filter: blur(2px);
     }
     
     .countdown-subtitle {
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       color: var(--neon-blue);
       text-shadow: 0 0 15px var(--neon-blue);
-      animation: shine 2s infinite; /* Faster shine */
+      animation: shine 2s infinite;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 1px;
     }
     
     #countdown-container {
@@ -118,6 +141,7 @@
       margin-bottom: clamp(3rem, 8vh, 5rem);
       width: 100%;
       max-width: 1200px;
+      position: relative;
     }
     
     .countdown-box {
@@ -126,9 +150,40 @@
       border-radius: 20px;
       padding: clamp(1rem, 3vw, 2.5rem);
       min-width: clamp(100px, 25vw, 160px);
-      box-shadow: 0 0 30px var(--neon-purple);
+      box-shadow: 
+        0 0 30px var(--neon-purple),
+        0 0 60px rgba(5, 217, 232, 0.3);
       backdrop-filter: blur(8px);
-      animation: floatBox 4s ease-in-out infinite; /* Faster float */
+      animation: floatBox 4s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .countdown-box:hover {
+      transform: scale(1.05);
+      box-shadow: 
+        0 0 40px var(--neon-pink),
+        0 0 80px rgba(255, 42, 109, 0.5);
+    }
+    
+    .countdown-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent,
+        transparent,
+        transparent,
+        var(--neon-blue),
+        transparent
+      );
+      transform: rotate(30deg);
+      animation: shineOverlay 6s linear infinite;
     }
     
     .countdown-value {
@@ -138,7 +193,9 @@
       background-clip: text;
       color: transparent;
       text-shadow: 0 0 20px rgba(255, 42, 109, 0.7);
-      animation: pulse 1s infinite; /* Faster pulse */
+      animation: pulse 1s infinite;
+      font-weight: 700;
+      position: relative;
     }
     
     .countdown-label {
@@ -148,6 +205,8 @@
       letter-spacing: 3px;
       margin-top: 1rem;
       text-shadow: 0 0 15px var(--neon-blue);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
     }
     
     .special-message {
@@ -161,32 +220,109 @@
       border-radius: 30px;
       border: 2px solid var(--neon-yellow);
       box-shadow: 0 0 50px var(--neon-purple);
+      max-width: 90%;
       animation: 
-        glow 2s infinite alternate, /* Faster glow */
-        floatMessage 5s ease-in-out infinite; /* Faster float */
+        glow 2s infinite alternate,
+        floatMessage 5s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .special-message::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+      animation: shimmer 4s linear infinite;
+    }
+    
+    /* Orbiting Photo System */
+    .orbit-system {
+      position: relative;
+      width: var(--orbit-radius);
+      height: var(--orbit-radius);
+      margin: clamp(3rem, 8vh, 6rem) auto;
+      animation: rotateCenter 120s linear infinite;
     }
     
     .photo-comet {
-      width: clamp(200px, 60vw, 400px);
-      height: clamp(200px, 60vw, 400px);
+      position: absolute;
+      width: clamp(120px, 30vw, 200px);
+      height: clamp(120px, 30vw, 200px);
       border-radius: 50%;
-      border: 5px solid transparent;
-      border-image: linear-gradient(45deg, var(--neon-yellow), var(--neon-pink)) 1;
-      box-shadow: 0 0 60px var(--neon-purple), 
-                  inset 0 0 40px var(--neon-blue);
-      margin: clamp(2rem, 6vh, 5rem) auto;
+      border: 3px solid transparent;
+      border-image: linear-gradient(45deg, var(--neon-yellow), var(--neon-pink), var(--neon-blue)) 1;
+      box-shadow: 
+        0 0 40px var(--neon-purple),
+        inset 0 0 20px var(--neon-blue),
+        0 0 60px rgba(255, 42, 109, 0.5);
       overflow: hidden;
-      position: relative;
+      z-index: 10;
       animation: 
-        rotateFrame 20s linear infinite, /* Faster rotation */
-        cometFloat 5s ease-in-out infinite; /* Faster float */
+        rotateFrame 20s linear infinite,
+        cometFloat 5s ease-in-out infinite;
+      transition: all 0.5s ease;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .photo-comet:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 
+        0 0 60px var(--neon-purple),
+        inset 0 0 40px var(--neon-blue),
+        0 0 100px rgba(255, 42, 109, 0.8);
     }
     
     .photo-comet img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      animation: pulse 3s infinite; /* Faster pulse */
+      object-position: center center;
+      display: block;
+      border-radius: 50%;
+      transform: scale(1.05);
+      animation: pulse 3s infinite;
+      filter: brightness(1.05) contrast(1.1);
+    }
+    
+    .orbiting-image {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-blue);
+      box-shadow: 0 0 20px var(--neon-pink);
+      overflow: hidden;
+      animation: orbit var(--orbit-speed) linear infinite;
+      transform-origin: center center;
+      z-index: 5;
+    }
+    
+    .orbiting-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .orbiting-image:nth-child(1) {
+      animation-delay: calc(var(--orbit-speed) * -0.25);
+    }
+    
+    .orbiting-image:nth-child(2) {
+      animation-delay: calc(var(--orbit-speed) * -0.5);
+    }
+    
+    .orbiting-image:nth-child(3) {
+      animation-delay: calc(var(--orbit-speed) * -0.75);
+    }
+    
+    .orbiting-image:nth-child(4) {
+      animation-delay: calc(var(--orbit-speed) * -0.1);
     }
     
     .cosmic-element {
@@ -196,6 +332,25 @@
       animation: cosmicDrift linear infinite;
       filter: drop-shadow(0 0 10px currentColor);
       font-size: clamp(1.5rem, 4vw, 3rem);
+      opacity: 0;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      animation: particleFloat linear infinite;
+    }
+    
+    .confetti {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: var(--neon-pink);
+      opacity: 0;
+      z-index: 100;
+      animation: confettiFall linear infinite;
     }
     
     /* Animations */
@@ -203,6 +358,11 @@
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
+    }
+    
+    @keyframes rainbow {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
     }
     
     @keyframes shine {
@@ -227,13 +387,27 @@
     }
     
     @keyframes rotateFrame {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    @keyframes rotateCenter {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
     
+    @keyframes orbit {
+      0% {
+        transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+      }
+    }
+    
     @keyframes cometFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-30px); }
+      0%, 100% { transform: translate(-50%, -50%); }
+      50% { transform: translate(-50%, calc(-50% - 30px)); }
     }
     
     @keyframes cosmicDrift {
@@ -255,10 +429,61 @@
       100% { transform: rotate(360deg); }
     }
     
+    @keyframes particleFloat {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes shineOverlay {
+      0% {
+        transform: translateX(-100%) rotate(30deg);
+      }
+      100% {
+        transform: translateX(100%) rotate(30deg);
+      }
+    }
+    
+    @keyframes shimmer {
+      0% {
+        transform: scale(0.5) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
     /* Responsive adjustments */
     @media (max-width: 768px) {
       :root {
-        --scroll-speed: 25s; /* Even faster on mobile */
+        --scroll-speed: 25s;
+        --particle-count: 50;
+        --orbit-radius: clamp(120px, 35vw, 200px);
+        --orbit-speed: 60s;
       }
       
       .countdown-box {
@@ -271,7 +496,7 @@
       }
       
       .nebula-layer {
-        animation-duration: 120s; /* Slower nebula on mobile */
+        animation-duration: 120s;
       }
       
       .nebula-layer:nth-child(2) {
@@ -313,8 +538,19 @@
         </div>
       </div>
       
-      <div class="photo-comet">
-        <img src="https://raw.githubusercontent.com/MuhammadZohaib6301/countdownn.github.io/main/maham1.png" alt="Maham's Beautiful Photo">
+      <div class="orbit-system">
+        <div class="photo-comet">
+          <img src="https://raw.githubusercontent.com/MuhammadZohaib6301/countdownn.github.io/main/maham1.png" alt="Maham's Beautiful Photo">
+        </div>
+        <div class="orbiting-image">
+          <img src="https://raw.githubusercontent.com/MuhammadZohaib6301/countdownn.github.io/main/maham1.png" alt="Orbiting Photo">
+        </div>
+        <div class="orbiting-image">
+          <img src="https://raw.githubusercontent.com/MuhammadZohaib6301/countdownn.github.io/main/maham1.png" alt="Orbiting Photo">
+        </div>
+        <div class="orbiting-image">
+          <img src="https://raw.githubusercontent.com/MuhammadZohaib6301/countdownn.github.io/main/maham1.png" alt="Orbiting Photo">
+        </div>
       </div>
       
       <div class="special-message">
@@ -325,15 +561,52 @@
   </div>
 
   <script>
-    // Enhanced cosmic elements with faster movement
+    // Enhanced cosmic elements with faster movement and more variety
     const cosmicElements = [
       '🌠', '🪐', '✨', '💖', '👑', '💎', '🌟', '🎂', '🎉', '🌹', '🌻', '🌸',
       '🌺', '🌷', '⚘', '🍀', '🌿', '🍃', '🌊', '🌀', '🌈', '🔥', '☀️', '🌙',
       '⭐', '☄️', '💫', '⚡', '🎇', '🎆', '🌅', '🌄', '🌃', '🌌', '🌉', '🏞',
       '💗', '💓', '💞', '💕', '💘', '💝', '💟', '❣️', '💌', '🧁', '🥂', '🍾',
       '🎶', '🎵', '🎼', '🎹', '🎷', '🎺', '🎸', '🎻', '🥁', '🎤', '🎧', '🎬',
-      '🏆', '🎗', '🏅', '🥇', '🥈', '🥉'
+      '🏆', '🎗', '🏅', '🥇', '🥈', '🥉', '🚀', '👽', '🤖', '👾', '🛸', '🌕',
+      '🌖', '🌗', '🌘', '🌑', '🌒', '🌓', '🌔', '🌎', '🌍', '🌏', '🔮', '🎁',
+      '🎀', '🎊', '🎋', '🎐', '🎑', '🧧', '🎎', '🎏', '🛍', '👑', '💍', '📿',
+      '💎', '🔱', '⚜️', '♾️', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤',
+      '🤍', '💯', '🔔', '🎶', '🎵', '🎼', '🎤', '🎧', '🥳', '😍', '🥰', '😘',
+      '💋', '👄', '👅', '👀', '👁️', '🧠', '👃', '👂', '🦻', '👃', '👣', '👄'
     ];
+    
+    // Create star particles
+    function createParticles() {
+      const particleCount = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--particle-count'));
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random size between 1-3px
+        const size = Math.random() * 2 + 1;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `${Math.random() * 100}vh`;
+        
+        // Random brightness
+        const brightness = Math.random() * 0.5 + 0.5;
+        particle.style.backgroundColor = `rgba(255, 255, 255, ${brightness})`;
+        
+        // Random animation duration (30-60s)
+        const duration = Math.random() * 30 + 30;
+        particle.style.animationDuration = `${duration}s`;
+        
+        // Random delay
+        particle.style.animationDelay = `${Math.random() * 30}s`;
+        
+        document.body.appendChild(particle);
+      }
+    }
     
     function createCosmicElement() {
       const element = document.createElement('div');
@@ -344,8 +617,8 @@
       element.style.left = `${Math.random() * 100}vw`;
       element.style.top = `${Math.random() * 100}vh`;
       
-      // Faster movement (10-20s instead of 20-60s)
-      const duration = Math.random() * 10 + 10;
+      // Faster movement (5-15s instead of 10-20s)
+      const duration = Math.random() * 10 + 5;
       element.style.animationDuration = `${duration}s`;
       
       // Random delay
@@ -355,11 +628,74 @@
       const hue = Math.floor(Math.random() * 360);
       element.style.color = `hsl(${hue}, 100%, 70%)`;
       
+      // Random size
+      const size = Math.random() * 1.5 + 0.5;
+      element.style.transform = `scale(${size})`;
+      
+      // Random rotation
+      const rotation = Math.random() * 360;
+      element.style.transform += ` rotate(${rotation}deg)`;
+      
       document.body.appendChild(element);
       
       // Remove after animation completes
       setTimeout(() => {
         element.remove();
+      }, duration * 1000);
+    }
+    
+    // Create confetti for celebration
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      
+      // Random position
+      confetti.style.left = `${Math.random() * 100}vw`;
+      
+      // Random color
+      const colors = [
+        'var(--neon-pink)',
+        'var(--neon-blue)',
+        'var(--neon-yellow)',
+        'var(--neon-purple)',
+        'var(--neon-green)',
+        '#ffffff'
+      ];
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      
+      // Random shape
+      const shapes = ['circle', 'square', 'triangle'];
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      if (shape === 'circle') {
+        confetti.style.borderRadius = '50%';
+      } else if (shape === 'triangle') {
+        confetti.style.width = '0';
+        confetti.style.height = '0';
+        confetti.style.borderLeft = '8px solid transparent';
+        confetti.style.borderRight = '8px solid transparent';
+        confetti.style.borderBottom = `15px solid ${confetti.style.backgroundColor}`;
+        confetti.style.backgroundColor = 'transparent';
+      }
+      
+      // Random size
+      const size = Math.random() * 10 + 5;
+      confetti.style.width = `${size}px`;
+      if (shape !== 'triangle') {
+        confetti.style.height = `${size}px`;
+      }
+      
+      // Random animation duration (3-8s)
+      const duration = Math.random() * 5 + 3;
+      confetti.style.animationDuration = `${duration}s`;
+      
+      // Random delay
+      confetti.style.animationDelay = `${Math.random() * 2}s`;
+      
+      document.body.appendChild(confetti);
+      
+      // Remove after animation completes
+      setTimeout(() => {
+        confetti.remove();
       }, duration * 1000);
     }
     
@@ -377,32 +713,85 @@
       document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
       document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
       
+      // Add pulse effect when seconds change
+      if (seconds !== parseInt(document.getElementById('seconds').textContent)) {
+        document.getElementById('seconds').style.animation = 'none';
+        setTimeout(() => {
+          document.getElementById('seconds').style.animation = 'pulse 1s infinite';
+        }, 10);
+      }
+      
       if (distance < 0) {
         clearInterval(countdownInterval);
         document.getElementById('countdown-container').innerHTML = `
-          <div style="font-size: clamp(2rem, 6vw, 4rem); color: var(--neon-yellow); text-shadow: 0 0 30px var(--neon-pink);">
+          <div style="font-size: clamp(2rem, 6vw, 4rem); color: var(--neon-yellow); text-shadow: 0 0 30px var(--neon-pink); animation: pulse 0.5s infinite alternate, rainbow 3s linear infinite;">
             🎊 HAPPY BIRTHDAY MAHAM! 🥳
           </div>
         `;
         
-        // Create celebration effect with faster elements
-        for (let i = 0; i < 100; i++) {
+        // Create massive celebration effect
+        for (let i = 0; i < 200; i++) {
           setTimeout(() => {
             createCosmicElement();
+            createConfetti();
           }, i * 50);
         }
+        
+        // Change background animation
+        document.querySelector('.content-wrapper').style.animation = 'none';
+        document.querySelector('.nebula-layer:nth-child(1)').style.animation = 'nebulaFlow 20s linear infinite';
+        document.querySelector('.nebula-layer:nth-child(2)').style.animation = 'nebulaFlow 30s linear infinite reverse';
+        
+        // Add birthday music
+        const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        audio.loop = true;
+        audio.volume = 0.3;
+        audio.play().catch(e => console.log('Audio play failed:', e));
+        
+        // Change all messages
+        const messages = document.querySelectorAll('.special-message');
+        messages[0].innerHTML = "It's your special day, Maham!<br>The cosmos rejoices with you!";
+        messages[1].innerHTML = "May this year bring you<br>endless joy and cosmic adventures!";
+        
+        // Make photo glow more
+        document.querySelector('.photo-comet').style.boxShadow = 
+          '0 0 100px var(--neon-purple), inset 0 0 80px var(--neon-blue), 0 0 200px rgba(255, 42, 109, 0.8)';
+          
+        // Speed up orbiting images
+        document.documentElement.style.setProperty('--orbit-speed', '20s');
       }
     }
     
-    // Initialize with faster cosmic elements
-    setInterval(createCosmicElement, 300); // More frequent elements (was 500ms)
+    // Initialize with cosmic elements and particles
+    createParticles();
+    setInterval(createCosmicElement, 200);
     updateCountdown();
     const countdownInterval = setInterval(updateCountdown, 1000);
+    
+    // Add interactive elements
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      document.querySelector('.content-wrapper').style.transform = 
+        `translateY(0) rotateX(${(y - 0.5) * 10}deg) rotateY(${(x - 0.5) * 10}deg)`;
+    });
     
     // Adjust speed based on device performance
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.documentElement.style.setProperty('--scroll-speed', '60s');
+      document.documentElement.style.setProperty('--particle-count', '30');
+      document.documentElement.style.setProperty('--orbit-speed', '120s');
     }
+    
+    // Add click celebration
+    document.addEventListener('click', () => {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          createCosmicElement();
+        }, i * 50);
+      }
+    });
   </script>
 </body>
 </html>
