@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌌 Maham's Birthday Countdown 🎉</title>
+  <title>🌌 Maham's Special Birthday Countdown 🎉</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Dancing+Script:wght@700&display=swap');
     
     :root {
       --neon-pink: #ff2a6d;
       --neon-blue: #05d9e8;
       --neon-purple: #d300c5;
       --neon-yellow: #f9f002;
+      --neon-green: #00ff9d;
     }
     
     body {
@@ -26,6 +27,8 @@
     
     .header {
       margin-top: 2rem;
+      position: relative;
+      z-index: 15;
     }
     
     .birthday-title {
@@ -146,9 +149,72 @@
       animation: shine 3s infinite;
     }
     
-    @keyframes shine {
-      0% { transform: translateX(-100%) rotate(30deg); }
-      100% { transform: translateX(100%) rotate(30deg); }
+    /* Special Message */
+    .special-message {
+      display: none;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      color: var(--neon-pink);
+      text-shadow: 0 0 15px var(--neon-purple);
+      margin: 2rem 0;
+      max-width: 800px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.3);
+      border-radius: 20px;
+      border: 1px solid var(--neon-yellow);
+      animation: glow 2s infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 10px var(--neon-pink); }
+      to { box-shadow: 0 0 30px var(--neon-yellow); }
+    }
+    
+    /* Photo Frame */
+    .photo-frame {
+      display: none;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 5px solid var(--neon-yellow);
+      box-shadow: 0 0 30px var(--neon-purple), 
+                  inset 0 0 20px var(--neon-blue);
+      margin: 2rem auto;
+      overflow: hidden;
+      position: relative;
+      animation: rotateFrame 20s linear infinite;
+    }
+    
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    @keyframes rotateFrame {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Heart Rain */
+    .heart {
+      position: absolute;
+      pointer-events: none;
+      z-index: 5;
+      animation: fall linear infinite;
+      color: var(--neon-pink);
+      text-shadow: 0 0 10px currentColor;
+    }
+    
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
     }
     
     /* Cosmic elements */
@@ -173,6 +239,33 @@
       }
     }
     
+    /* Final Celebration */
+    .final-celebration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,0,150,0.2) 0%, rgba(0,0,0,0.9) 70%);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+    
+    .celebration-text {
+      font-size: 4rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-yellow), var(--neon-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(255,255,255,0.5);
+      margin-bottom: 2rem;
+      animation: pulse 1s infinite alternate;
+    }
+    
     /* Responsive */
     @media (max-width: 768px) {
       .birthday-title {
@@ -192,6 +285,12 @@
         padding: 1rem 2rem;
         font-size: 1.1rem;
       }
+      .special-message {
+        font-size: 1.8rem;
+      }
+      .celebration-text {
+        font-size: 2.5rem;
+      }
     }
   </style>
 </head>
@@ -199,7 +298,7 @@
   <div id="cosmicBackground"></div>
   
   <div class="header">
-    <h1 class="birthday-title">MAHAM'S BIRTHDAY</h1>
+    <h1 class="birthday-title">MAHAM'S SPECIAL DAY</h1>
     <p class="countdown-title">Countdown to July 25, 2025</p>
   </div>
   
@@ -223,21 +322,41 @@
       </div>
     </div>
     
+    <!-- Special Message (hidden by default) -->
+    <div class="special-message" id="specialMessage">
+      To the most beautiful soul, may your birthday be as radiant as you are! ✨
+    </div>
+    
+    <!-- Photo Frame (hidden by default) -->
+    <div class="photo-frame" id="photoFrame">
+      <img src="https://via.placeholder.com/250x250.png?text=Maham's+Beautiful+Smile" alt="Maham's Photo">
+    </div>
+    
     <!-- Celebration Button (hidden by default) -->
     <button id="celebrationButton">ENTER CELEBRATION 🚀</button>
+  </div>
+  
+  <!-- Final Celebration Overlay (hidden by default) -->
+  <div class="final-celebration" id="finalCelebration">
+    <div class="celebration-text">HAPPY BIRTHDAY MAHAM!</div>
+    <div class="celebration-text">🎂 🎉 🥳</div>
+    <button id="continueCelebration" style="background: var(--neon-blue); color: black; border: none; padding: 1rem 2rem; font-size: 1.2rem; border-radius: 50px; cursor: pointer; font-family: 'Orbitron'; margin-top: 2rem;">Continue Celebration</button>
   </div>
 
   <script>
     // Target date: July 25, 2025
     const targetDate = new Date('2025-07-25T00:00:00').getTime();
     const celebrationBtn = document.getElementById('celebrationButton');
+    const specialMessage = document.getElementById('specialMessage');
+    const photoFrame = document.getElementById('photoFrame');
+    const finalCelebration = document.getElementById('finalCelebration');
     
     // Set your celebration page URL here:
     const CELEBRATION_PAGE_URL = "https://yourusername.github.io/maham-birthday.html";
     
     // Create cosmic elements
     function createCosmicElements() {
-      const elements = ['🌠', '🪐', '🚀', '✨', '🎂', '🎉', '💖', '👑'];
+      const elements = ['🌠', '🪐', '🚀', '✨', '🎂', '🎉', '💖', '👑', '🌸', '💎'];
       const element = document.createElement('div');
       element.className = 'cosmic-element';
       element.textContent = elements[Math.floor(Math.random() * elements.length)];
@@ -252,7 +371,25 @@
       }, parseFloat(element.style.animationDuration) * 1000);
     }
     
+    // Create falling hearts
+    function createHearts() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.fontSize = `${Math.random() * 2 + 1}rem`;
+      heart.style.animationDuration = `${Math.random() * 5 + 3}s`;
+      heart.style.animationDelay = `${Math.random() * 2}s`;
+      document.body.appendChild(heart);
+      
+      setTimeout(() => {
+        heart.remove();
+      }, parseFloat(heart.style.animationDuration) * 1000);
+    }
+    
+    // Start cosmic elements and hearts
     setInterval(createCosmicElements, 300);
+    setInterval(createHearts, 200);
     
     // Countdown function
     function updateCountdown() {
@@ -262,12 +399,28 @@
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000;
       
       document.getElementById('days').textContent = days.toString().padStart(2, '0');
       document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
       document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
       document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+      
+      // Special effects when it's the final day
+      if (days === 0 && hours < 24) {
+        document.querySelector('.birthday-title').textContent = "MAHAM'S BIRTHDAY IS TODAY!";
+        specialMessage.style.display = "block";
+        photoFrame.style.display = "block";
+        
+        // Increase the intensity of effects
+        clearInterval(cosmicInterval);
+        clearInterval(heartInterval);
+        setInterval(createCosmicElements, 100);
+        setInterval(createHearts, 100);
+        
+        // Change background gradient
+        document.body.style.background = "radial-gradient(circle, #1a1038 0%, #ff2a6d 100%)";
+      }
       
       if (distance < 0) {
         clearInterval(countdownInterval);
@@ -277,35 +430,60 @@
           </div>
         `;
         celebrationBtn.style.display = "block";
+        specialMessage.style.display = "block";
+        photoFrame.style.display = "block";
         createBigBang();
+        showFinalCelebration();
       }
     }
     
     // Special effect for when countdown completes
     function createBigBang() {
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 300; i++) {
         setTimeout(() => {
           const confetti = document.createElement('div');
           confetti.className = 'cosmic-element';
-          confetti.textContent = ['✨', '🎉', '💖', '🌟'][Math.floor(Math.random() * 4)];
+          confetti.textContent = ['✨', '🎉', '💖', '🌟', '🎂', '🌸', '💎', '👑'][Math.floor(Math.random() * 8)];
           confetti.style.left = `${Math.random() * 100}vw`;
           confetti.style.animationDuration = '3s';
-          confetti.style.fontSize = `${Math.random() * 2 + 1}rem`;
+          confetti.style.fontSize = `${Math.random() * 3 + 1}rem`;
           confetti.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
           document.getElementById('cosmicBackground').appendChild(confetti);
           
           setTimeout(() => confetti.remove(), 3000);
-        }, i * 20);
+        }, i * 10);
       }
     }
     
-    // Button click handler
+    // Show final celebration overlay
+    function showFinalCelebration() {
+      finalCelebration.style.display = "flex";
+      document.body.style.overflow = "hidden";
+      
+      // Add continuous celebration effects
+      setInterval(() => {
+        createBigBang();
+      }, 3000);
+    }
+    
+    // Button click handlers
     celebrationBtn.addEventListener('click', () => {
       window.location.href = CELEBRATION_PAGE_URL;
     });
     
+    document.getElementById('continueCelebration').addEventListener('click', () => {
+      finalCelebration.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
+    
+    // Initialize intervals
+    const cosmicInterval = setInterval(createCosmicElements, 300);
+    const heartInterval = setInterval(createHearts, 200);
     updateCountdown();
     const countdownInterval = setInterval(updateCountdown, 1000);
+    
+    // Replace placeholder image with actual photo URL
+    // photoFrame.querySelector('img').src = "URL_TO_MAHAM'S_PHOTO.jpg";
   </script>
 </body>
 </html>
