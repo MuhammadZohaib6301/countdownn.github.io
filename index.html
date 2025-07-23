@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>✨ Maham's Birthday Across All Devices 🌍</title>
+  <title>🌌 Maham's Cosmic Birthday Countdown 🎉</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Dancing+Script:wght@700&display=swap');
     
@@ -12,22 +12,6 @@
       --neon-blue: #05d9e8;
       --neon-purple: #d300c5;
       --neon-yellow: #f9f002;
-      --neon-green: #00ff9d;
-      
-      /* Responsive size variables */
-      --title-size: clamp(2.5rem, 8vw, 5rem);
-      --countdown-value-size: clamp(3rem, 10vw, 6rem);
-      --countdown-label-size: clamp(1rem, 3vw, 1.8rem);
-      --message-size: clamp(1.8rem, 5vw, 3.5rem);
-      --photo-size: clamp(200px, 60vw, 400px);
-      --box-padding: clamp(1rem, 3vw, 2.5rem);
-      --countdown-gap: clamp(1rem, 3vw, 3rem);
-    }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
     
     body {
@@ -38,10 +22,8 @@
       text-align: center;
       overflow-x: hidden;
       min-height: 100vh;
-      perspective: 1000px;
     }
     
-    /* Universal Layout */
     .universal-container {
       display: flex;
       flex-direction: column;
@@ -55,7 +37,6 @@
       margin: 0 auto;
     }
     
-    /* Nebula Background (All Devices) */
     .nebula-bg {
       position: fixed;
       top: 0;
@@ -95,12 +76,6 @@
       animation-direction: reverse;
     }
     
-    @keyframes nebulaFlow {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    /* Header Styles */
     .birthday-header {
       margin-bottom: clamp(2rem, 6vh, 5rem);
       position: relative;
@@ -108,16 +83,14 @@
     }
     
     .birthday-title {
-      font-size: var(--title-size);
+      font-size: clamp(2.5rem, 8vw, 5rem);
       background: linear-gradient(90deg, var(--neon-pink), var(--neon-yellow), var(--neon-purple));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       text-shadow: 0 0 20px rgba(255,255,255,0.5);
       margin-bottom: 1rem;
-      animation: 
-        pulse 2s infinite alternate,
-        floatTitle 8s ease-in-out infinite;
+      animation: pulse 2s infinite alternate;
     }
     
     .countdown-subtitle {
@@ -127,10 +100,9 @@
       animation: shine 3s infinite;
     }
     
-    /* Countdown Styles */
     #countdown-container {
       display: flex;
-      gap: var(--countdown-gap);
+      gap: clamp(1rem, 3vw, 3rem);
       justify-content: center;
       flex-wrap: wrap;
       margin-bottom: clamp(3rem, 8vh, 5rem);
@@ -142,17 +114,15 @@
       background: rgba(11, 4, 23, 0.6);
       border: 3px solid var(--neon-blue);
       border-radius: 20px;
-      padding: var(--box-padding);
+      padding: clamp(1rem, 3vw, 2.5rem);
       min-width: clamp(100px, 25vw, 160px);
-      box-shadow: 
-        0 0 30px var(--neon-purple),
-        inset 0 0 20px rgba(5, 217, 232, 0.3);
+      box-shadow: 0 0 30px var(--neon-purple);
       backdrop-filter: blur(8px);
       animation: floatBox 6s ease-in-out infinite;
     }
     
     .countdown-value {
-      font-size: var(--countdown-value-size);
+      font-size: clamp(3rem, 10vw, 6rem);
       background: linear-gradient(180deg, var(--neon-yellow), var(--neon-pink));
       -webkit-background-clip: text;
       background-clip: text;
@@ -162,7 +132,7 @@
     }
     
     .countdown-label {
-      font-size: var(--countdown-label-size);
+      font-size: clamp(1rem, 3vw, 1.8rem);
       color: white;
       text-transform: uppercase;
       letter-spacing: 3px;
@@ -170,10 +140,9 @@
       text-shadow: 0 0 15px var(--neon-blue);
     }
     
-    /* Special Message */
     .special-message {
       font-family: 'Dancing Script', cursive;
-      font-size: var(--message-size);
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
       color: white;
       text-shadow: 0 0 20px var(--neon-pink);
       margin: clamp(2rem, 5vh, 5rem) auto;
@@ -181,31 +150,22 @@
       background: rgba(255, 42, 109, 0.2);
       border-radius: 30px;
       border: 2px solid var(--neon-yellow);
-      box-shadow: 
-        0 0 50px var(--neon-purple),
-        inset 0 0 30px rgba(249, 240, 2, 0.2);
-      animation: 
-        glow 3s infinite alternate,
-        floatMessage 8s ease-in-out infinite;
+      box-shadow: 0 0 50px var(--neon-purple);
+      animation: glow 3s infinite alternate;
       max-width: min(90%, 900px);
     }
     
-    /* Photo Comet */
     .photo-comet {
-      width: var(--photo-size);
-      height: var(--photo-size);
+      width: clamp(200px, 60vw, 400px);
+      height: clamp(200px, 60vw, 400px);
       border-radius: 50%;
       border: 5px solid transparent;
       border-image: linear-gradient(45deg, var(--neon-yellow), var(--neon-pink)) 1;
-      box-shadow: 
-        0 0 60px var(--neon-purple),
-        inset 0 0 40px var(--neon-blue);
+      box-shadow: 0 0 60px var(--neon-purple);
       margin: clamp(2rem, 6vh, 5rem) auto;
       overflow: hidden;
       position: relative;
-      animation: 
-        rotateFrame 30s linear infinite,
-        cometFloat 10s ease-in-out infinite;
+      animation: rotateFrame 30s linear infinite;
     }
     
     .photo-comet img {
@@ -215,7 +175,6 @@
       animation: pulse 4s infinite;
     }
     
-    /* Cosmic Elements (All Devices) */
     .cosmic-element {
       position: fixed;
       pointer-events: none;
@@ -225,28 +184,15 @@
       font-size: clamp(1.5rem, 4vw, 3rem);
     }
     
-    /* Shooting Stars (Hidden on small mobile) */
-    .shooting-star {
-      position: fixed;
-      width: clamp(2px, 0.6vw, 4px);
-      height: clamp(2px, 0.6vw, 4px);
-      background: white;
-      border-radius: 50%;
-      filter: blur(1px);
-      animation: shootingStar linear infinite;
-      display: none; /* Hidden by default for mobile */
+    @keyframes nebulaFlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     
-    /* Animations */
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
-    }
-    
-    @keyframes floatTitle {
-      0%, 100% { transform: translateY(0) rotateX(0deg); }
-      50% { transform: translateY(-20px) rotateX(5deg); }
     }
     
     @keyframes shine {
@@ -265,19 +211,9 @@
       to { box-shadow: 0 0 40px var(--neon-yellow); }
     }
     
-    @keyframes floatMessage {
-      0%, 100% { transform: translateY(0) rotate(-1deg); }
-      50% { transform: translateY(-20px) rotate(2deg); }
-    }
-    
     @keyframes rotateFrame {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
-    }
-    
-    @keyframes cometFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-30px); }
     }
     
     @keyframes cosmicDrift {
@@ -294,81 +230,13 @@
       }
     }
     
-    @keyframes shootingStar {
-      0% {
-        transform: translateX(0) translateY(0) scale(0.3);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(100vw) translateY(-50vh) scale(1);
-        opacity: 0;
-      }
-    }
-    
-    /* Media Queries for Enhanced Experiences */
-    @media (min-width: 768px) {
-      /* Tablet and Desktop - Enable more effects */
-      .shooting-star {
-        display: block;
-      }
-      
-      .cosmic-element {
-        font-size: clamp(1.5rem, 2vw, 3rem);
-      }
-      
-      #countdown-container {
-        flex-wrap: nowrap;
-      }
-    }
-    
-    @media (min-width: 1200px) {
-      /* Large Desktop - More spacing */
-      .universal-container {
-        padding: 4rem;
-      }
-      
-      .birthday-header {
-        margin-bottom: 6rem;
-      }
-    }
-    
     @media (max-width: 480px) {
-      /* Small Mobile - Simplify some effects */
       .countdown-box {
         min-width: 80px;
         padding: 1rem;
       }
-      
       .special-message {
         padding: 1.2rem;
-      }
-      
-      /* Reduce animation intensity for performance */
-      .nebula-layer {
-        animation-duration: 200s;
-      }
-    }
-    
-    /* Orientation-specific adjustments */
-    @media (orientation: landscape) and (max-height: 500px) {
-      /* Mobile landscape - compact layout */
-      .universal-container {
-        padding: 1rem;
-      }
-      
-      #countdown-container {
-        margin-bottom: 1.5rem;
-      }
-      
-      .special-message, .photo-comet {
-        margin: 1.5rem auto;
-      }
-      
-      .birthday-title {
-        font-size: clamp(2rem, 6vh, 3rem);
       }
     }
   </style>
@@ -406,7 +274,7 @@
     </div>
     
     <div class="photo-comet">
-      <img src="https://via.placeholder.com/400x400.png?text=Maham's+Beauty" alt="Maham's Photo">
+      <img src="maham1.png" alt="Maham's Beautiful Photo">
     </div>
     
     <div class="special-message">
@@ -416,7 +284,6 @@
   </div>
 
   <script>
-    // Cosmic elements for all devices
     const cosmicElements = [
       '🌠', '🪐', '✨', '💖', '👑', '💎', '🌟', '🎂', '🎉', '🌹', '🌻', '🌸',
       '🌺', '🌷', '⚘', '🍀', '🌿', '🍃', '🌊', '🌀', '🌈', '🔥', '☀️', '🌙',
@@ -430,81 +297,17 @@
       const element = document.createElement('div');
       element.className = 'cosmic-element';
       element.textContent = cosmicElements[Math.floor(Math.random() * cosmicElements.length)];
-      
-      // Random positioning
       element.style.left = `${Math.random() * 100}vw`;
       element.style.top = `${Math.random() * 100}vh`;
-      
-      // Random animation duration
       const duration = Math.random() * 30 + 20;
       element.style.animationDuration = `${duration}s`;
-      
-      // Random delay
       element.style.animationDelay = `${Math.random() * 10}s`;
-      
-      // Random color
       const hue = Math.floor(Math.random() * 360);
       element.style.color = `hsl(${hue}, 100%, 70%)`;
-      
       document.body.appendChild(element);
-      
-      // Remove after animation completes
-      setTimeout(() => {
-        element.remove();
-      }, duration * 1000);
+      setTimeout(() => element.remove(), duration * 1000);
     }
     
-    // Shooting stars for larger devices
-    function createShootingStar() {
-      if (window.innerWidth < 768) return; // Only for tablets and up
-      
-      const star = document.createElement('div');
-      star.className = 'shooting-star';
-      
-      // Random starting position
-      star.style.left = `${Math.random() * 100}vw`;
-      star.style.top = `${Math.random() * 100}vh`;
-      
-      // Random animation duration
-      const duration = Math.random() * 2 + 1;
-      star.style.animationDuration = `${duration}s`;
-      
-      // Random delay
-      star.style.animationDelay = `${Math.random() * 5}s`;
-      
-      // Random color (blue/cyan range)
-      const hue = Math.floor(Math.random() * 60) + 180;
-      star.style.background = `hsl(${hue}, 100%, 80%)`;
-      
-      document.body.appendChild(star);
-      
-      // Remove after animation completes
-      setTimeout(() => {
-        star.remove();
-      }, duration * 1000);
-    }
-    
-    // Initialize elements based on device capabilities
-    function initializeEffects() {
-      // Cosmic elements for all devices
-      setInterval(createCosmicElement, 500);
-      
-      // Shooting stars only for larger devices
-      if (window.innerWidth >= 768) {
-        setInterval(createShootingStar, 2000);
-      }
-      
-      // Adjust animation intensity based on device performance
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduceMotion || window.innerWidth < 480) {
-        document.documentElement.style.setProperty('--photo-size', 'clamp(150px, 50vw, 300px)');
-        document.querySelectorAll('.nebula-layer').forEach(layer => {
-          layer.style.animationDuration = '300s';
-        });
-      }
-    }
-    
-    // Countdown function
     function updateCountdown() {
       const now = new Date();
       const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0).getTime();
@@ -526,34 +329,15 @@
           </div>
         `;
         
-        // Celebration effect
         for (let i = 0; i < 50; i++) {
-          setTimeout(() => {
-            createCosmicElement();
-            if (window.innerWidth >= 768) createShootingStar();
-          }, i * 100);
+          setTimeout(createCosmicElement, i * 100);
         }
       }
     }
     
-    // Initialize on load
-    window.addEventListener('load', () => {
-      initializeEffects();
-      updateCountdown();
-      const countdownInterval = setInterval(updateCountdown, 1000);
-      
-      // Replace placeholder image with actual photo URL
-      // document.querySelector('.photo-comet img').src = "URL_TO_MAHAM'S_PHOTO.jpg";
-    });
-    
-    // Adjust on resize
-    window.addEventListener('resize', () => {
-      // Re-initialize shooting stars if crossing breakpoint
-      const stars = document.querySelectorAll('.shooting-star');
-      if (window.innerWidth >= 768 && stars.length === 0) {
-        initializeEffects();
-      }
-    });
+    setInterval(createCosmicElement, 500);
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
