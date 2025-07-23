@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌌 Maham's Cosmic Birthday Countdown 🎉</title>
+  <title>🚀 Maham's Speedy Birthday Countdown 🌠</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Dancing+Script:wght@700&display=swap');
     
@@ -12,6 +12,7 @@
       --neon-blue: #05d9e8;
       --neon-purple: #d300c5;
       --neon-yellow: #f9f002;
+      --scroll-speed: 30s; /* Increased speed (originally 60s) */
     }
     
     body {
@@ -21,20 +22,29 @@
       font-family: 'Orbitron', sans-serif;
       text-align: center;
       overflow-x: hidden;
-      min-height: 100vh;
+      height: 100vh;
+      perspective: 1000px;
     }
     
-    .universal-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 2rem;
-      position: relative;
-      z-index: 10;
-      max-width: 2000px;
-      margin: 0 auto;
+    .galaxy-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+    
+    .content-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 300vh;
+      animation: cosmicFloat var(--scroll-speed) linear infinite;
+      transform-style: preserve-3d;
+      will-change: transform; /* Improves animation performance */
+    }
+    
+    @keyframes cosmicFloat {
+      0% { transform: translateY(100vh); }
+      100% { transform: translateY(-200vh); }
     }
     
     .nebula-bg {
@@ -62,7 +72,7 @@
         rgba(5, 217, 232, 0.1) 30%,
         rgba(11, 4, 23, 0) 70%
       );
-      animation-duration: 100s;
+      animation-duration: 80s; /* Faster nebula movement */
     }
     
     .nebula-layer:nth-child(2) {
@@ -72,7 +82,7 @@
         rgba(249, 240, 2, 0.1) 30%,
         rgba(11, 4, 23, 0) 70%
       );
-      animation-duration: 150s;
+      animation-duration: 120s; /* Faster nebula movement */
       animation-direction: reverse;
     }
     
@@ -90,14 +100,14 @@
       color: transparent;
       text-shadow: 0 0 20px rgba(255,255,255,0.5);
       margin-bottom: 1rem;
-      animation: pulse 2s infinite alternate;
+      animation: pulse 1.5s infinite alternate; /* Faster pulse */
     }
     
     .countdown-subtitle {
       font-size: clamp(1.5rem, 4vw, 2.5rem);
       color: var(--neon-blue);
       text-shadow: 0 0 15px var(--neon-blue);
-      animation: shine 3s infinite;
+      animation: shine 2s infinite; /* Faster shine */
     }
     
     #countdown-container {
@@ -118,7 +128,7 @@
       min-width: clamp(100px, 25vw, 160px);
       box-shadow: 0 0 30px var(--neon-purple);
       backdrop-filter: blur(8px);
-      animation: floatBox 6s ease-in-out infinite;
+      animation: floatBox 4s ease-in-out infinite; /* Faster float */
     }
     
     .countdown-value {
@@ -128,7 +138,7 @@
       background-clip: text;
       color: transparent;
       text-shadow: 0 0 20px rgba(255, 42, 109, 0.7);
-      animation: pulse 1.5s infinite;
+      animation: pulse 1s infinite; /* Faster pulse */
     }
     
     .countdown-label {
@@ -151,8 +161,9 @@
       border-radius: 30px;
       border: 2px solid var(--neon-yellow);
       box-shadow: 0 0 50px var(--neon-purple);
-      animation: glow 3s infinite alternate;
-      max-width: min(90%, 900px);
+      animation: 
+        glow 2s infinite alternate, /* Faster glow */
+        floatMessage 5s ease-in-out infinite; /* Faster float */
     }
     
     .photo-comet {
@@ -161,18 +172,21 @@
       border-radius: 50%;
       border: 5px solid transparent;
       border-image: linear-gradient(45deg, var(--neon-yellow), var(--neon-pink)) 1;
-      box-shadow: 0 0 60px var(--neon-purple);
+      box-shadow: 0 0 60px var(--neon-purple), 
+                  inset 0 0 40px var(--neon-blue);
       margin: clamp(2rem, 6vh, 5rem) auto;
       overflow: hidden;
       position: relative;
-      animation: rotateFrame 30s linear infinite;
+      animation: 
+        rotateFrame 20s linear infinite, /* Faster rotation */
+        cometFloat 5s ease-in-out infinite; /* Faster float */
     }
     
     .photo-comet img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      animation: pulse 4s infinite;
+      animation: pulse 3s infinite; /* Faster pulse */
     }
     
     .cosmic-element {
@@ -184,11 +198,7 @@
       font-size: clamp(1.5rem, 4vw, 3rem);
     }
     
-    @keyframes nebulaFlow {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
+    /* Animations */
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -211,9 +221,19 @@
       to { box-shadow: 0 0 40px var(--neon-yellow); }
     }
     
+    @keyframes floatMessage {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+    
     @keyframes rotateFrame {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes cometFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
     }
     
     @keyframes cosmicDrift {
@@ -230,13 +250,32 @@
       }
     }
     
-    @media (max-width: 480px) {
+    @keyframes nebulaFlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      :root {
+        --scroll-speed: 25s; /* Even faster on mobile */
+      }
+      
       .countdown-box {
         min-width: 80px;
         padding: 1rem;
       }
+      
       .special-message {
         padding: 1.2rem;
+      }
+      
+      .nebula-layer {
+        animation-duration: 120s; /* Slower nebula on mobile */
+      }
+      
+      .nebula-layer:nth-child(2) {
+        animation-duration: 180s;
       }
     }
   </style>
@@ -247,42 +286,46 @@
     <div class="nebula-layer"></div>
   </div>
   
-  <div class="universal-container">
-    <header class="birthday-header">
-      <h1 class="birthday-title">MAHAM'S BIRTHDAY</h1>
-      <p class="countdown-subtitle">Countdown to Celebration</p>
-    </header>
-    
-    <div class="special-message">
-      To the most beautiful Maham,<br>
-      may your day shine as bright as the stars!
-    </div>
-    
-    <div id="countdown-container">
-      <div class="countdown-box">
-        <div class="countdown-value" id="hours">23</div>
-        <div class="countdown-label">Hours</div>
+  <div class="galaxy-container">
+    <div class="content-wrapper">
+      <header class="birthday-header">
+        <h1 class="birthday-title">MAHAM'S BIRTHDAY</h1>
+        <p class="countdown-subtitle">Cosmic Countdown to Celebration</p>
+      </header>
+      
+      <div class="special-message">
+        To the most beautiful Maham,<br>
+        may your day shine as bright as the stars!
       </div>
-      <div class="countdown-box">
-        <div class="countdown-value" id="minutes">00</div>
-        <div class="countdown-label">Minutes</div>
+      
+      <div id="countdown-container">
+        <div class="countdown-box">
+          <div class="countdown-value" id="hours">23</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-box">
+          <div class="countdown-value" id="minutes">00</div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-box">
+          <div class="countdown-value" id="seconds">00</div>
+          <div class="countdown-label">Seconds</div>
+        </div>
       </div>
-      <div class="countdown-box">
-        <div class="countdown-value" id="seconds">00</div>
-        <div class="countdown-label">Seconds</div>
+      
+      <div class="photo-comet">
+        <img src="https://raw.githubusercontent.com/MuhammadZohaib6301/countdownn.github.io/main/maham1.png" alt="Maham's Beautiful Photo">
       </div>
-    </div>
-    
-    <div class="photo-comet">
-<img src="https://raw.githubusercontent.com/MuhammadZohaib6301/countdownn.github.io/4876e297f61584978283ae3d631c3675e0e337a3/maham1.png" alt="Maham's Beautiful Photo">    </div>
-    
-    <div class="special-message">
-      The universe celebrates you today!<br>
-      Wishing you infinite happiness ✨
+      
+      <div class="special-message">
+        The universe celebrates you today!<br>
+        Wishing you infinite happiness ✨
+      </div>
     </div>
   </div>
 
   <script>
+    // Enhanced cosmic elements with faster movement
     const cosmicElements = [
       '🌠', '🪐', '✨', '💖', '👑', '💎', '🌟', '🎂', '🎉', '🌹', '🌻', '🌸',
       '🌺', '🌷', '⚘', '🍀', '🌿', '🍃', '🌊', '🌀', '🌈', '🔥', '☀️', '🌙',
@@ -296,17 +339,31 @@
       const element = document.createElement('div');
       element.className = 'cosmic-element';
       element.textContent = cosmicElements[Math.floor(Math.random() * cosmicElements.length)];
+      
+      // Random positioning
       element.style.left = `${Math.random() * 100}vw`;
       element.style.top = `${Math.random() * 100}vh`;
-      const duration = Math.random() * 30 + 20;
+      
+      // Faster movement (10-20s instead of 20-60s)
+      const duration = Math.random() * 10 + 10;
       element.style.animationDuration = `${duration}s`;
-      element.style.animationDelay = `${Math.random() * 10}s`;
+      
+      // Random delay
+      element.style.animationDelay = `${Math.random() * 5}s`;
+      
+      // Random color
       const hue = Math.floor(Math.random() * 360);
       element.style.color = `hsl(${hue}, 100%, 70%)`;
+      
       document.body.appendChild(element);
-      setTimeout(() => element.remove(), duration * 1000);
+      
+      // Remove after animation completes
+      setTimeout(() => {
+        element.remove();
+      }, duration * 1000);
     }
     
+    // Countdown function
     function updateCountdown() {
       const now = new Date();
       const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0).getTime();
@@ -328,15 +385,24 @@
           </div>
         `;
         
-        for (let i = 0; i < 50; i++) {
-          setTimeout(createCosmicElement, i * 100);
+        // Create celebration effect with faster elements
+        for (let i = 0; i < 100; i++) {
+          setTimeout(() => {
+            createCosmicElement();
+          }, i * 50);
         }
       }
     }
     
-    setInterval(createCosmicElement, 500);
+    // Initialize with faster cosmic elements
+    setInterval(createCosmicElement, 300); // More frequent elements (was 500ms)
     updateCountdown();
     const countdownInterval = setInterval(updateCountdown, 1000);
+    
+    // Adjust speed based on device performance
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.style.setProperty('--scroll-speed', '60s');
+    }
   </script>
 </body>
 </html>
