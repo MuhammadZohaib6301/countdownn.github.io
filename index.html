@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌌 Maham's Special Birthday Countdown 🎉</title>
+  <title>🌠 Maham's Birthday Countdown - FINAL HOURS! 🎉</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Dancing+Script:wght@700&display=swap');
     
@@ -17,12 +17,19 @@
     
     body {
       margin: 0;
-      background: radial-gradient(circle, #0f0c29 0%, #1a1038 100%);
+      background: radial-gradient(circle, #ff2a6d 0%, #1a1038 70%);
       color: white;
       font-family: 'Orbitron', sans-serif;
       text-align: center;
-      overflow: hidden;
+      overflow-x: hidden;
       perspective: 1000px;
+      animation: bgPulse 10s infinite alternate;
+    }
+    
+    @keyframes bgPulse {
+      0% { background: radial-gradient(circle, #ff2a6d 0%, #1a1038 70%); }
+      50% { background: radial-gradient(circle, #d300c5 0%, #0f0c29 70%); }
+      100% { background: radial-gradient(circle, #05d9e8 0%, #1a1038 70%); }
     }
     
     .header {
@@ -39,20 +46,21 @@
       color: transparent;
       text-shadow: 0 0 20px rgba(255,255,255,0.3);
       margin-bottom: 0.5rem;
-      animation: pulse 2s infinite alternate;
+      animation: pulse 1s infinite alternate;
     }
     
     .countdown-title {
-      font-size: 1.8rem;
-      color: var(--neon-blue);
-      text-shadow: 0 0 10px var(--neon-blue);
+      font-size: 2rem;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 15px var(--neon-yellow);
       margin-bottom: 2rem;
+      font-weight: bold;
     }
     
     @keyframes pulse {
-      0% { text-shadow: 0 0 10px var(--neon-pink); }
-      50% { text-shadow: 0 0 20px var(--neon-yellow); }
-      100% { text-shadow: 0 0 30px var(--neon-purple); }
+      0% { transform: scale(1); text-shadow: 0 0 10px var(--neon-pink); }
+      50% { transform: scale(1.05); text-shadow: 0 0 20px var(--neon-yellow); }
+      100% { transform: scale(1); text-shadow: 0 0 30px var(--neon-purple); }
     }
     
     .container {
@@ -74,36 +82,38 @@
     }
     
     .countdown-box {
-      background: rgba(42, 10, 74, 0.4);
-      border: 2px solid var(--neon-blue);
+      background: rgba(255, 42, 109, 0.2);
+      border: 3px solid var(--neon-yellow);
       border-radius: 15px;
       padding: 1.5rem;
       min-width: 120px;
-      box-shadow: 0 0 20px var(--neon-purple);
+      box-shadow: 0 0 30px var(--neon-pink);
       backdrop-filter: blur(5px);
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
     }
     
     .countdown-box:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px var(--neon-yellow);
+      transform: scale(1.1);
+      box-shadow: 0 0 50px var(--neon-yellow);
     }
     
     .countdown-value {
       font-size: 4rem;
-      background: linear-gradient(180deg, var(--neon-blue), var(--neon-pink));
+      background: linear-gradient(180deg, var(--neon-yellow), var(--neon-pink));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 15px rgba(5, 217, 232, 0.5);
+      text-shadow: 0 0 15px rgba(255, 42, 109, 0.5);
+      animation: pulse 1s infinite;
     }
     
     .countdown-label {
       font-size: 1.2rem;
-      color: var(--neon-yellow);
+      color: white;
       text-transform: uppercase;
       letter-spacing: 3px;
       margin-top: 0.5rem;
+      text-shadow: 0 0 10px var(--neon-blue);
     }
     
     /* Celebration Button */
@@ -125,54 +135,37 @@
       position: relative;
       overflow: hidden;
       z-index: 20;
+      animation: pulse 1.5s infinite;
     }
     
     #celebrationButton:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 40px var(--neon-purple);
-    }
-    
-    #celebrationButton::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        transparent 45%,
-        rgba(255,255,255,0.3) 50%,
-        transparent 55%
-      );
-      transform: rotate(30deg);
-      animation: shine 3s infinite;
+      transform: scale(1.15);
+      box-shadow: 0 0 50px var(--neon-purple);
     }
     
     /* Special Message */
     .special-message {
-      display: none;
       font-family: 'Dancing Script', cursive;
       font-size: 2.5rem;
-      color: var(--neon-pink);
-      text-shadow: 0 0 15px var(--neon-purple);
+      color: white;
+      text-shadow: 0 0 15px var(--neon-pink);
       margin: 2rem 0;
       max-width: 800px;
-      padding: 1rem;
-      background: rgba(0,0,0,0.3);
+      padding: 1.5rem;
+      background: rgba(255, 42, 109, 0.3);
       border-radius: 20px;
-      border: 1px solid var(--neon-yellow);
+      border: 2px solid var(--neon-yellow);
+      box-shadow: 0 0 30px var(--neon-purple);
       animation: glow 2s infinite alternate;
     }
     
     @keyframes glow {
-      from { box-shadow: 0 0 10px var(--neon-pink); }
-      to { box-shadow: 0 0 30px var(--neon-yellow); }
+      from { box-shadow: 0 0 20px var(--neon-pink); }
+      to { box-shadow: 0 0 40px var(--neon-yellow); }
     }
     
     /* Photo Frame */
     .photo-frame {
-      display: none;
       width: 250px;
       height: 250px;
       border-radius: 50%;
@@ -189,6 +182,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      animation: pulse 3s infinite;
     }
     
     @keyframes rotateFrame {
@@ -204,66 +198,44 @@
       animation: fall linear infinite;
       color: var(--neon-pink);
       text-shadow: 0 0 10px currentColor;
+      font-size: 1.5rem;
     }
     
     @keyframes fall {
       0% {
-        transform: translateY(-10vh) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-    
-    /* Cosmic elements */
-    .cosmic-element {
-      position: absolute;
-      pointer-events: none;
-      z-index: 1;
-      animation: float linear infinite;
-    }
-    
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.5);
+        transform: translateY(-10vh) rotate(0deg) scale(0.5);
         opacity: 0;
       }
       20% {
         opacity: 1;
       }
       100% {
-        transform: translateY(-20vh) scale(1);
+        transform: translateY(110vh) rotate(360deg) scale(1.5);
         opacity: 0;
       }
     }
     
-    /* Final Celebration */
-    .final-celebration {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,0,150,0.2) 0%, rgba(0,0,0,0.9) 70%);
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
+    /* Sparkle Elements */
+    .sparkle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      animation: sparkleFall linear infinite;
+      color: var(--neon-yellow);
     }
     
-    .celebration-text {
-      font-size: 4rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, var(--neon-pink), var(--neon-yellow), var(--neon-blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 20px rgba(255,255,255,0.5);
-      margin-bottom: 2rem;
-      animation: pulse 1s infinite alternate;
+    @keyframes sparkleFall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
     }
     
     /* Responsive */
@@ -272,7 +244,7 @@
         font-size: 2.5rem;
       }
       .countdown-title {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
       }
       .countdown-box {
         min-width: 80px;
@@ -281,15 +253,16 @@
       .countdown-value {
         font-size: 2.5rem;
       }
-      #celebrationButton {
-        padding: 1rem 2rem;
-        font-size: 1.1rem;
+      .countdown-label {
+        font-size: 1rem;
       }
       .special-message {
         font-size: 1.8rem;
+        padding: 1rem;
       }
-      .celebration-text {
-        font-size: 2.5rem;
+      .photo-frame {
+        width: 200px;
+        height: 200px;
       }
     }
   </style>
@@ -298,18 +271,19 @@
   <div id="cosmicBackground"></div>
   
   <div class="header">
-    <h1 class="birthday-title">MAHAM'S SPECIAL DAY</h1>
-    <p class="countdown-title">Countdown to July 25, 2025</p>
+    <h1 class="birthday-title">MAHAM'S BIRTHDAY TODAY!</h1>
+    <p class="countdown-title">Final Countdown to the Celebration!</p>
   </div>
   
   <div class="container">
+    <div class="special-message">
+      To the most beautiful Maham, your special day is finally here! ✨<br>
+      The world shines brighter because of you 💖
+    </div>
+    
     <div id="countdown">
       <div class="countdown-box">
-        <div class="countdown-value" id="days">00</div>
-        <div class="countdown-label">Days</div>
-      </div>
-      <div class="countdown-box">
-        <div class="countdown-value" id="hours">00</div>
+        <div class="countdown-value" id="hours">23</div>
         <div class="countdown-label">Hours</div>
       </div>
       <div class="countdown-box">
@@ -322,47 +296,31 @@
       </div>
     </div>
     
-    <!-- Special Message (hidden by default) -->
-    <div class="special-message" id="specialMessage">
-      To the most beautiful soul, may your birthday be as radiant as you are! ✨
+    <div class="photo-frame">
+      <img src="https://via.placeholder.com/250x250.png?text=Maham's+Special+Day" alt="Maham's Photo">
     </div>
     
-    <!-- Photo Frame (hidden by default) -->
-    <div class="photo-frame" id="photoFrame">
-      <img src="https://via.placeholder.com/250x250.png?text=Maham's+Beautiful+Smile" alt="Maham's Photo">
-    </div>
-    
-    <!-- Celebration Button (hidden by default) -->
-    <button id="celebrationButton">ENTER CELEBRATION 🚀</button>
-  </div>
-  
-  <!-- Final Celebration Overlay (hidden by default) -->
-  <div class="final-celebration" id="finalCelebration">
-    <div class="celebration-text">HAPPY BIRTHDAY MAHAM!</div>
-    <div class="celebration-text">🎂 🎉 🥳</div>
-    <button id="continueCelebration" style="background: var(--neon-blue); color: black; border: none; padding: 1rem 2rem; font-size: 1.2rem; border-radius: 50px; cursor: pointer; font-family: 'Orbitron'; margin-top: 2rem;">Continue Celebration</button>
+    <button id="celebrationButton">START CELEBRATION 🎊</button>
   </div>
 
   <script>
-    // Target date: July 25, 2025
-    const targetDate = new Date('2025-07-25T00:00:00').getTime();
+    // Target date: Today at midnight (end of birthday)
+    const now = new Date();
+    const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0).getTime();
     const celebrationBtn = document.getElementById('celebrationButton');
-    const specialMessage = document.getElementById('specialMessage');
-    const photoFrame = document.getElementById('photoFrame');
-    const finalCelebration = document.getElementById('finalCelebration');
     
     // Set your celebration page URL here:
     const CELEBRATION_PAGE_URL = "https://yourusername.github.io/maham-birthday.html";
     
     // Create cosmic elements
     function createCosmicElements() {
-      const elements = ['🌠', '🪐', '🚀', '✨', '🎂', '🎉', '💖', '👑', '🌸', '💎'];
+      const elements = ['🌠', '🪐', '✨', '🎂', '🎉', '💖', '👑', '🌸', '💎', '🌟'];
       const element = document.createElement('div');
       element.className = 'cosmic-element';
       element.textContent = elements[Math.floor(Math.random() * elements.length)];
       element.style.left = `${Math.random() * 100}vw`;
       element.style.fontSize = `${Math.random() * 2 + 1}rem`;
-      element.style.animationDuration = `${Math.random() * 10 + 5}s`;
+      element.style.animationDuration = `${Math.random() * 5 + 3}s`;
       element.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
       document.getElementById('cosmicBackground').appendChild(element);
       
@@ -375,10 +333,10 @@
     function createHearts() {
       const heart = document.createElement('div');
       heart.className = 'heart';
-      heart.innerHTML = '❤️';
+      heart.innerHTML = ['❤️', '💖', '💗', '💓', '💞', '💕'][Math.floor(Math.random() * 6)];
       heart.style.left = `${Math.random() * 100}vw`;
-      heart.style.fontSize = `${Math.random() * 2 + 1}rem`;
-      heart.style.animationDuration = `${Math.random() * 5 + 3}s`;
+      heart.style.fontSize = `${Math.random() * 2 + 1.5}rem`;
+      heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
       heart.style.animationDelay = `${Math.random() * 2}s`;
       document.body.appendChild(heart);
       
@@ -387,41 +345,40 @@
       }, parseFloat(heart.style.animationDuration) * 1000);
     }
     
+    // Create sparkles
+    function createSparkles() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.innerHTML = '✨';
+      sparkle.style.left = `${Math.random() * 100}vw`;
+      sparkle.style.fontSize = `${Math.random() * 1 + 0.8}rem`;
+      sparkle.style.animationDuration = `${Math.random() * 4 + 3}s`;
+      document.body.appendChild(sparkle);
+      
+      setTimeout(() => {
+        sparkle.remove();
+      }, parseFloat(sparkle.style.animationDuration) * 1000);
+    }
+    
     // Start cosmic elements and hearts
-    setInterval(createCosmicElements, 300);
-    setInterval(createHearts, 200);
+    setInterval(createCosmicElements, 100);
+    setInterval(createHearts, 150);
+    setInterval(createSparkles, 200);
     
     // Countdown function
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = targetDate - now;
       
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000;
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
       
-      document.getElementById('days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = Math.floor(hours).toString().padStart(2, '0');
       document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
       document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
       
-      // Special effects when it's the final day
-      if (days === 0 && hours < 24) {
-        document.querySelector('.birthday-title').textContent = "MAHAM'S BIRTHDAY IS TODAY!";
-        specialMessage.style.display = "block";
-        photoFrame.style.display = "block";
-        
-        // Increase the intensity of effects
-        clearInterval(cosmicInterval);
-        clearInterval(heartInterval);
-        setInterval(createCosmicElements, 100);
-        setInterval(createHearts, 100);
-        
-        // Change background gradient
-        document.body.style.background = "radial-gradient(circle, #1a1038 0%, #ff2a6d 100%)";
-      }
-      
+      // When countdown reaches zero
       if (distance < 0) {
         clearInterval(countdownInterval);
         document.getElementById('countdown').innerHTML = `
@@ -430,16 +387,13 @@
           </div>
         `;
         celebrationBtn.style.display = "block";
-        specialMessage.style.display = "block";
-        photoFrame.style.display = "block";
         createBigBang();
-        showFinalCelebration();
       }
     }
     
-    // Special effect for when countdown completes
+    // Special effect for celebration
     function createBigBang() {
-      for (let i = 0; i < 300; i++) {
+      for (let i = 0; i < 100; i++) {
         setTimeout(() => {
           const confetti = document.createElement('div');
           confetti.className = 'cosmic-element';
@@ -451,39 +405,31 @@
           document.getElementById('cosmicBackground').appendChild(confetti);
           
           setTimeout(() => confetti.remove(), 3000);
-        }, i * 10);
+        }, i * 50);
       }
     }
     
-    // Show final celebration overlay
-    function showFinalCelebration() {
-      finalCelebration.style.display = "flex";
-      document.body.style.overflow = "hidden";
-      
-      // Add continuous celebration effects
-      setInterval(() => {
-        createBigBang();
-      }, 3000);
-    }
-    
-    // Button click handlers
+    // Button click handler
     celebrationBtn.addEventListener('click', () => {
-      window.location.href = CELEBRATION_PAGE_URL;
+      // Create a grand exit effect before redirecting
+      for (let i = 0; i < 200; i++) {
+        setTimeout(() => {
+          createHearts();
+          createSparkles();
+        }, i * 20);
+      }
+      
+      setTimeout(() => {
+        window.location.href = CELEBRATION_PAGE_URL;
+      }, 2000);
     });
     
-    document.getElementById('continueCelebration').addEventListener('click', () => {
-      finalCelebration.style.display = "none";
-      document.body.style.overflow = "auto";
-    });
-    
-    // Initialize intervals
-    const cosmicInterval = setInterval(createCosmicElements, 300);
-    const heartInterval = setInterval(createHearts, 200);
+    // Initialize countdown
     updateCountdown();
     const countdownInterval = setInterval(updateCountdown, 1000);
     
     // Replace placeholder image with actual photo URL
-    // photoFrame.querySelector('img').src = "URL_TO_MAHAM'S_PHOTO.jpg";
+    // document.querySelector('.photo-frame img').src = "URL_TO_MAHAM'S_PHOTO.jpg";
   </script>
 </body>
 </html>
